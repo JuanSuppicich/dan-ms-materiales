@@ -1,8 +1,8 @@
-# Dan-ms-usuarios
+# Dan-ms-materiales
 
-Materials API repository for DAN course.
+Repositorio API de materiales para laboratorio curso DAN. 
 
-## Developers 
+## Desarrolladores
 
 - Durand, Matias. 
 - Suppicich, Juan Sebastian.
