@@ -1,12 +1,10 @@
 package com.durandsuppicich.danmsmateriales.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 import com.durandsuppicich.danmsmateriales.domain.Material;
+import com.durandsuppicich.danmsmateriales.service.IServicioMaterial;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,79 +20,56 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-
 @RestController
 @RequestMapping("/api/material")
 @Api(value = "MaterialRest", description = "Permite gestionar los materiales")
 public class MaterialRest {
-    
-    private static Integer ID_GEN = 1;
-    private List<Material> materiales = new ArrayList<Material>();
 
+    private final IServicioMaterial servicioMaterial;
+
+    public MaterialRest(IServicioMaterial servicioMaterial) {
+        this.servicioMaterial = servicioMaterial;
+    }
 
     @PostMapping
     @ApiOperation(value = "Crea un nuevo material")
     public ResponseEntity<Material> crear(@RequestBody Material material) {
-        material.setId(ID_GEN++);
-        materiales.add(material);
-        return ResponseEntity.ok(material);
+        Material body = this.servicioMaterial.crear(material);
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping
     @ApiOperation(value = "Lista todos los materiales")
     public ResponseEntity<List<Material>> todos() {
-        return ResponseEntity.ok(materiales);
+        List<Material> body = this.servicioMaterial.todos();
+        return ResponseEntity.ok(body);
     }
 
     @GetMapping(path = "/{id}")
     @ApiOperation(value = "Busca un material por id")
     public ResponseEntity<Material> materialPorId(@PathVariable Integer id) {
-        Optional<Material> material = materiales
-            .stream()
-            .filter(m -> m.getId().equals(id))
-            .findFirst();
-        return ResponseEntity.of(material);
+        Optional<Material> body = this.servicioMaterial.materialPorId(id);
+        return ResponseEntity.of(body);
     }
 
     @GetMapping(params = "nombre")
     @ApiOperation(value = "Busca un material por nombre")
     public ResponseEntity<Material> materialPorNombre(@RequestParam(name = "nombre") String nombre) {
-        Optional<Material> material = materiales
-            .stream()
-            .filter(m -> m.getNombre().equals(nombre))
-            .findFirst();
-        return ResponseEntity.of(material);
+        Optional<Material> body = this.servicioMaterial.materialPorNombre(nombre);
+        return ResponseEntity.of(body);
     }
 
     @PutMapping
     @ApiOperation(value = "Actualiza un material en base al id")
     public ResponseEntity<Material> actualizar(@RequestBody Material material, @PathVariable Integer id) {
-        OptionalInt indexOpt = IntStream.range(0, materiales.size())
-            .filter(i -> materiales.get(i).getId().equals(id))
-            .findFirst();
-
-        if (indexOpt.isPresent()) {
-            materiales.set(indexOpt.getAsInt(), material);
-            return ResponseEntity.ok(material);
-        } else { 
-            return ResponseEntity.notFound().build();
-        }
+        this.servicioMaterial.actualizar(id, material);
+        return ResponseEntity.ok().build();
     }
-    
+
     @DeleteMapping(path = "/{id}")
     @ApiOperation(value = "Elimina un material en base al id")
     public ResponseEntity<Material> eliminar(@PathVariable Integer id) {
-        OptionalInt indexOpt = IntStream.range(0, materiales.size())
-            .filter(i -> materiales.get(i).getId().equals(id))
-            .findFirst();
-        
-        if (indexOpt.isPresent()) {
-            materiales.remove(indexOpt.getAsInt());
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        this.servicioMaterial.eliminar(id);
+        return ResponseEntity.ok().build();
     }
-
-
 }
