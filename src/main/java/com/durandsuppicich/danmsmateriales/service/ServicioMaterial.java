@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.durandsuppicich.danmsmateriales.dao.MaterialJpaRepository;
 import com.durandsuppicich.danmsmateriales.domain.Material;
+import com.durandsuppicich.danmsmateriales.exception.NotFoundException;
 
 import org.springframework.stereotype.Service;
 
@@ -40,17 +41,23 @@ public class ServicioMaterial implements IServicioMaterial {
 
     @Override
     public void actualizar(Integer id, Material material) {
+
         if (materialRepository.existsById(id)) {
             materialRepository.save(material);
         }
-        // Lanzar excepción
+        else {
+            throw new NotFoundException("Material inexistente. Id: " + id);
+        }
     }
 
     @Override
     public void eliminar(Integer id) {
+
         if (materialRepository.existsById(id)) {
             materialRepository.deleteById(id);
         }
-        // Lanzar excepción
+        else {
+            throw new NotFoundException("Material inexistente. Id: " + id);
+        }
     }
 }
