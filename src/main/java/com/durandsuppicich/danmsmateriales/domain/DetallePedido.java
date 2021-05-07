@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DETALLE_PEDIDO")
+@Table(name = "DETALLE_PEDIDO", schema = "MS_MATERIALES")
 public class DetallePedido {
 
     @Id
@@ -21,6 +21,8 @@ public class DetallePedido {
 
     @Column(nullable = false)
     private Integer cantidad;
+
+    public DetallePedido() { }
 
     public Integer getId() {
         return id;

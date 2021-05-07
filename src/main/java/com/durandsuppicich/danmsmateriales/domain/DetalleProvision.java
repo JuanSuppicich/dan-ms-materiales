@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "DETALLE_PROVISION")
+@Table(name = "DETALLE_PROVISION", schema = "MS_MATERIALES")
 public class DetalleProvision {
 
     @Id
@@ -30,9 +30,7 @@ public class DetalleProvision {
     @JoinColumn(name = "ID_PROVISION")
     private Provision provision;
 
-    public DetalleProvision() {
-
-    }
+    public DetalleProvision() { }
 
     public DetalleProvision(Material material, Integer cantidad) {
         this.material = material;

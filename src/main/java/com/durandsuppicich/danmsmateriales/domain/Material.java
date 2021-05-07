@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MATERIAL")
+@Table(name = "MATERIAL", schema = "MS_MATERIALES")
 public class Material {
 
     @Id
@@ -27,19 +27,17 @@ public class Material {
     @Column(nullable = false)
     private Double precio;
 
-    @Column(nullable = false)
+    @Column(name = "STOCK_ACTUAL", nullable = false)
     private Integer stockActual;
 
-    @Column(nullable = false)
+    @Column(name = "STOCK_MINIMO", nullable = false)
     private Integer stockMinimo;
 
     @OneToOne
     @JoinColumn(name = "ID_UNIDAD")
     private Unidad unidad;
 
-    public Material() {
-
-    }
+    public Material() { }
 
     public Material(String nombre, String descripcion, Double precio, Integer stockActual, Integer stockMinimo,
             Unidad unidad) {

@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PROVISION")
+@Table(name = "PROVISION", schema = "MS_MATERIALES")
 public class Provision {
 
     @Id
@@ -26,9 +26,7 @@ public class Provision {
     @OneToMany(mappedBy = "provision", cascade = CascadeType.PERSIST)
     private  List<DetalleProvision> detalleProvision;
 
-    public Provision() {
-
-    }
+    public Provision() { }
 
     public Provision(Instant fechaProvision, List<DetalleProvision> detalleProvision) {
         this.fechaProvision = fechaProvision;

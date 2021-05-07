@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UNIDAD")
+@Table(name = "UNIDAD", schema = "MS_MATERIALES")
 public class Unidad {
 
     @Id
@@ -19,11 +19,10 @@ public class Unidad {
     @Column(nullable = false)
     private String descripcion;
 
-    public Unidad() {
+    public Unidad() { }
 
-    }
-
-    public Unidad(String descripcion) {
+    public Unidad(Integer id, String descripcion) {
+        this.id = id;
         this.descripcion = descripcion;
     }
 

@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MOVIMIENTO_STOCK")
+@Table(name = "MOVIMIENTO_STOCK", schema = "MS_MATERIALES")
 public class MovimientoStock {
 
     @Id
@@ -38,6 +38,8 @@ public class MovimientoStock {
 
     @Column(nullable = false)
     private Instant fecha;
+
+    public MovimientoStock() { }
 
     public Integer getId() {
         return id;
