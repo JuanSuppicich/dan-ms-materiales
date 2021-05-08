@@ -34,9 +34,8 @@ public class ServicioMaterial implements IServicioMaterial {
     }
 
     @Override
-    public Optional<Material> materialPorNombre(String nombre) {
-        // Completar
-        return null;
+    public List<Material> materialPorNombre(String nombre) {
+        return materialRepository.findByNombreContaining(nombre);
     }
 
     @Override
