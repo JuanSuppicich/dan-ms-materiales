@@ -7,8 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//Tiene que ser READ ONLY
 @Entity
-@Table(name = "DETALLE_PEDIDO", schema = "MS_MATERIALES")
+@Table(name = "DETALLE_PEDIDO", schema = "MS_PEDIDOS")
 public class DetallePedido {
 
     @Id
