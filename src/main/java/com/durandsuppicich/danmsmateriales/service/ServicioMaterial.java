@@ -34,8 +34,18 @@ public class ServicioMaterial implements IServicioMaterial {
     }
 
     @Override
-    public List<Material> materialPorNombre(String nombre) {
-        return materialRepository.findByNombreContaining(nombre);
+    public Optional<Material> materialPorNombre(String nombre) {
+        return materialRepository.findByNombre(nombre);
+    }
+
+    @Override
+    public List<Material> materialesPorRangoStock(Integer stockMinimo, Integer stockMaximo) {
+        return materialRepository.findByStockActualBetween(stockMinimo, stockMaximo);
+    }
+
+    @Override
+    public List<Material> materialesPorRangoPrecio(Double precioMinimo, Double precioMaximo) {
+        return materialRepository.findByPrecioBetween(precioMinimo, precioMaximo);
     }
 
     @Override

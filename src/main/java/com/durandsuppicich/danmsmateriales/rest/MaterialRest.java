@@ -66,15 +66,49 @@ public class MaterialRest {
 
     @GetMapping(params = "nombre")
     @ApiOperation(value = "Busca un material por nombre")
-    public ResponseEntity<List<Material>> materialPorNombre(@RequestParam(name = "nombre") String nombre) {
+    public ResponseEntity<Material> materialPorNombre(@RequestParam(name = "nombre") String nombre) {
 
-        List<Material> body = this.servicioMaterial.materialPorNombre(nombre);
+        Optional<Material> body = this.servicioMaterial.materialPorNombre(nombre);
+
+        if (body.isPresent()) {
+            return ResponseEntity.ok(body.get());
+        }
+        else {
+            throw new NotFoundException("Material no encontrado. Nombre: " + nombre);
+        }
+    }
+
+    @GetMapping(params = {"stockMinimo", "stockMaximo"})
+    @ApiOperation(value = "Busca materiales por rango de stock")
+    public ResponseEntity<List<Material>> materialesPorRangoStock(
+            @RequestParam(name = "stockMinimo") Integer stockMinimo,
+            @RequestParam(name = "stockMaximo") Integer stockMaximo) {
+        
+        List<Material> body = this.servicioMaterial.materialesPorRangoStock(stockMinimo, stockMaximo);
 
         if (!body.isEmpty()) {
             return ResponseEntity.ok(body);
         }
         else {
-            throw new NotFoundException("Material no encontrado. Nombre: " + nombre);
+            throw new NotFoundException("Materiales no encontrados. Stock Mínimo: " + stockMinimo +
+                " Stock Máximo: " + stockMaximo);
+        }
+    }
+
+    @GetMapping(params = {"precioMinimo", "precioMaximo"})
+    @ApiOperation(value = "Busca materiales por rango de precios")
+    public ResponseEntity<List<Material>> materialesPorRangoPrecio(
+            @RequestParam(name = "precioMinimo") Double precioMinimo,
+            @RequestParam(name = "precioMaximo") Double precioMaximo) {
+        
+        List<Material> body = this.servicioMaterial.materialesPorRangoPrecio(precioMinimo, precioMaximo);
+
+        if (!body.isEmpty()) {
+            return ResponseEntity.ok(body);
+        }
+        else {
+            throw new NotFoundException("Materiales no encontrados. Precio Mínimo: " + precioMinimo +
+                " Precio Máximo: " + precioMaximo);
         }
     }
 
