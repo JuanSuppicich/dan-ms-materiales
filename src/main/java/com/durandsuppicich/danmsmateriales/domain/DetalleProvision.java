@@ -62,6 +62,11 @@ public class DetalleProvision {
     }
 
     @Override
+    public String toString() {
+        return "DetalleProvision [cantidad=" + cantidad + ", id=" + id + ", material=" + material + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

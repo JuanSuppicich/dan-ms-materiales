@@ -50,6 +50,11 @@ public class DetallePedido {
     }
 
     @Override
+    public String toString() {
+        return "DetallePedido [cantidad=" + cantidad + ", id=" + id + ", material=" + material + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
