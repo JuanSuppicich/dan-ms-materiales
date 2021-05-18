@@ -17,7 +17,7 @@ public class DetallePedido {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "ID_MATERIAL")
+    @JoinColumn(name = "ID_PRODUCTO")
     private Material material;
 
     @Column(nullable = false)

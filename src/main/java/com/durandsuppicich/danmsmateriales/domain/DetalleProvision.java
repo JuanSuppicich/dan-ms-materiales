@@ -61,6 +61,14 @@ public class DetalleProvision {
         this.cantidad = cantidad;
     }
 
+    public Provision getProvision() {
+        return provision;
+    }
+
+    public void setProvision(Provision provision) {
+        this.provision = provision;
+    }
+
     @Override
     public String toString() {
         return "DetalleProvision [cantidad=" + cantidad + ", id=" + id + ", material=" + material + "]";
