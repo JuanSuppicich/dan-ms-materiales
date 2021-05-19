@@ -1,6 +1,7 @@
 package com.durandsuppicich.danmsmateriales.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.durandsuppicich.danmsmateriales.domain.Material;
 
@@ -10,5 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MaterialJpaRepository extends JpaRepository<Material, Integer> {
 
-    List<Material> findByNombreContaining(String nombre);
+    Optional<Material> findByNombre(String nombre);
+
+    List<Material> findByStockActualBetween(Integer stockMinimo, Integer stockMaximo);
+
+    List<Material> findByPrecioBetween(Double precioMinimo, Double precioMaximo);
 }

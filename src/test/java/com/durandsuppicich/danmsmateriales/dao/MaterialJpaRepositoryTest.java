@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
+import com.durandsuppicich.danmsmateriales.DanMsMaterialesApplicationTests;
 import com.durandsuppicich.danmsmateriales.domain.Material;
 import com.durandsuppicich.danmsmateriales.domain.Unidad;
 
@@ -17,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.jdbc.Sql;
 
-@SpringBootTest
+@SpringBootTest(classes = DanMsMaterialesApplicationTests.class)
 @Profile("testing")
 public class MaterialJpaRepositoryTest {
 
@@ -53,19 +54,13 @@ public class MaterialJpaRepositoryTest {
     @Test
     public void findByNombreContaining_materialesAlmacenados_materialesConNombreRecuperados() {
 
-        List<Material> materiales01 = materialRepository.findByNombreContaining("Material01");
-        List<Material> materiales02 = materialRepository.findByNombreContaining("Mat");
-        List<Material> materiales03 = materialRepository.findByNombreContaining("asd");
+        Optional<Material> material01 = materialRepository.findByNombre("Material01");
+        Optional<Material> material02 = materialRepository.findByNombre("Material99");
 
-        assertFalse(materiales01.isEmpty());
-        assertEquals(1, materiales01.size());
-        assertEquals("Material01", materiales01.get(0).getNombre());
+        assertTrue(material01.isPresent());
+        assertEquals("Material01", material01.get().getNombre());
 
-        assertFalse(materiales02.isEmpty());
-        assertEquals(2, materiales02.size());
-        assertTrue(materiales02.stream().allMatch(m -> m.getNombre().contains("Mat")));
-
-        assertTrue(materiales03.isEmpty());
+        assertFalse(material02.isPresent());
     }
 
     @Test

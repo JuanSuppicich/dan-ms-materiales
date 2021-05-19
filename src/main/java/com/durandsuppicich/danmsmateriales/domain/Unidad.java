@@ -43,6 +43,11 @@ public class Unidad {
     }
 
     @Override
+    public String toString() {
+        return "Unidad [descripcion=" + descripcion + ", id=" + id + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

@@ -98,6 +98,13 @@ public class MovimientoStock {
     }
 
     @Override
+    public String toString() {
+        return "MovimientoStock [cantidadEntrada=" + cantidadEntrada + ", cantidadSalida=" + cantidadSalida
+                + ", detallePedido=" + detallePedido + ", detalleProvision=" + detalleProvision + ", fecha=" + fecha
+                + ", id=" + id + ", material=" + material + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

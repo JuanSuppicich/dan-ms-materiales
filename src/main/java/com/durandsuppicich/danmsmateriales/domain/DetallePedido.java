@@ -7,8 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//Tiene que ser READ ONLY
 @Entity
-@Table(name = "DETALLE_PEDIDO", schema = "MS_MATERIALES")
+@Table(name = "DETALLE_PEDIDO", schema = "MS_PEDIDOS")
 public class DetallePedido {
 
     @Id
@@ -16,7 +17,7 @@ public class DetallePedido {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name = "ID_MATERIAL")
+    @JoinColumn(name = "ID_PRODUCTO")
     private Material material;
 
     @Column(nullable = false)
@@ -46,6 +47,11 @@ public class DetallePedido {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "DetallePedido [cantidad=" + cantidad + ", id=" + id + ", material=" + material + "]";
     }
 
     @Override

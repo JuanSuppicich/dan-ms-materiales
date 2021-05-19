@@ -10,7 +10,9 @@ public interface IServicioMaterial {
     Material crear(Material material);
     List<Material> todos();
     Optional<Material> materialPorId(Integer id);
-    List<Material> materialPorNombre(String nombre);
+    Optional<Material> materialPorNombre(String nombre);
+    List<Material> materialesPorRangoStock(Integer stockMinimo, Integer stockMaximo);
+    List<Material> materialesPorRangoPrecio(Double precioMinimo, Double precioMaximo);
     void actualizar(Integer id, Material material);
     void eliminar(Integer id);
 }

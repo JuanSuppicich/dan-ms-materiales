@@ -1,6 +1,7 @@
 package com.durandsuppicich.danmsmateriales.domain;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,9 @@ public class Provision {
     @OneToMany(mappedBy = "provision", cascade = CascadeType.PERSIST)
     private  List<DetalleProvision> detalleProvision;
 
-    public Provision() { }
+    public Provision() {
+        this.detalleProvision = new ArrayList<DetalleProvision>();
+    }
 
     public Provision(Instant fechaProvision, List<DetalleProvision> detalleProvision) {
         this.fechaProvision = fechaProvision;
@@ -55,6 +58,17 @@ public class Provision {
 
     public void setDetalleProvision(List<DetalleProvision> detalleProvision) {
         this.detalleProvision = detalleProvision;
+    }
+
+    public void addDetalle(DetalleProvision detalleProvision) {
+        this.detalleProvision.add(detalleProvision);
+        detalleProvision.setProvision(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Provision [detalleProvision=" + detalleProvision + ", fechaProvision=" + fechaProvision + ", id=" + id
+                + "]";
     }
 
     @Override
