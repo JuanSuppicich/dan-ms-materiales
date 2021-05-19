@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "4f060d3c-8e30-4e0f-8f72-60e4e9baa7d2",
+		"name": "MaterialRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Material01\",\r\n    \"descripcion\": \"Descripcion01\",\r\n    \"precio\": 10.0,\r\n    \"stockActual\": 11,\r\n    \"stockMinimo\": 10,\r\n    \"unidad\": {\r\n        \"id\": 1,\r\n        \"descripcion\": \"UN\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-MaterialRest}}",
+					"host": [
+						"{{url-MaterialRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Material02\",\r\n    \"descripcion\": \"Descripcion02\",\r\n    \"precio\": 15.0,\r\n    \"stockActual\": 200,\r\n    \"stockMinimo\": 20,\r\n    \"unidad\": {\r\n        \"id\": 2,\r\n        \"descripcion\": \"M\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-MaterialRest}}",
+					"host": [
+						"{{url-MaterialRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Material03\",\r\n    \"descripcion\": \"Descripcion03\",\r\n    \"precio\": 20.0,\r\n    \"stockActual\": 300,\r\n    \"stockMinimo\": 20,\r\n    \"unidad\": {\r\n        \"id\": 6,\r\n        \"descripcion\": \"KG\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-MaterialRest}}",
+					"host": [
+						"{{url-MaterialRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}",
+					"host": [
+						"{{url-MaterialRest}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materialPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}/1",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materialPorNombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}?nombre=Material01",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Material01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materialesPorRangoStock",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}?stockMinimo=100&stockMaximo=200",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"query": [
+						{
+							"key": "stockMinimo",
+							"value": "100"
+						},
+						{
+							"key": "stockMaximo",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materialesPorRangoPrecio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}?precioMinimo=15.0&precioMaximo=20.0",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"query": [
+						{
+							"key": "precioMinimo",
+							"value": "15.0"
+						},
+						{
+							"key": "precioMaximo",
+							"value": "20.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"Material02\",\r\n    \"descripcion\": \"Descripcion02 mod\",\r\n    \"precio\": 40.0,\r\n    \"stockActual\": 40,\r\n    \"stockMinimo\": 20,\r\n    \"unidad\": {\r\n        \"id\": 2,\r\n        \"descripcion\": \"M\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-MaterialRest}}/2",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"path": [
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "eliminar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url-MaterialRest}}/3",
+					"host": [
+						"{{url-MaterialRest}}"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url-MaterialRest",
+			"value": "http://localhost:9002/api/material"
+		}
+	]
+}
