@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
+import com.durandsuppicich.danmsmateriales.DanMsMaterialesApplicationTests;
 import com.durandsuppicich.danmsmateriales.domain.Material;
 import com.durandsuppicich.danmsmateriales.domain.Unidad;
 
@@ -17,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.jdbc.Sql;
 
-@SpringBootTest
+@SpringBootTest(classes = DanMsMaterialesApplicationTests.class)
 @Profile("testing")
 public class MaterialJpaRepositoryTest {
 

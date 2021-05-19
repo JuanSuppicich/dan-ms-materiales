@@ -1,13 +1,6 @@
 package com.durandsuppicich.danmsmateriales;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootTest
-class DanMsMaterialesApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+@SpringBootApplication
+public class DanMsMaterialesApplicationTests { }
