@@ -1,7 +1,6 @@
 package com.durandsuppicich.danmsmateriales.domain;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,27 +13,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PROVISION", schema = "MS_MATERIALES")
+@Table(name = "provision", schema = "ms_products")
 public class Provision {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PROVISION")
+    @Column(name = "provision_id")
     private Integer id;
 
-    private Instant fechaProvision;
+    @Column(name = "provision_date")
+    private Instant provisionDate;
 
     @OneToMany(mappedBy = "provision", cascade = CascadeType.PERSIST)
-    private  List<DetalleProvision> detalleProvision;
-
-    public Provision() {
-        this.detalleProvision = new ArrayList<DetalleProvision>();
-    }
-
-    public Provision(Instant fechaProvision, List<DetalleProvision> detalleProvision) {
-        this.fechaProvision = fechaProvision;
-        this.detalleProvision = detalleProvision;
-    }
+    private  List<ProvisionItem> items;
 
     public Integer getId() {
         return id;
@@ -44,61 +35,33 @@ public class Provision {
         this.id = id;
     }
 
-    public Instant getFechaProvision() {
-        return fechaProvision;
+    public Instant getProvisionDate() {
+        return provisionDate;
     }
 
-    public void setFechaProvision(Instant fechaProvision) {
-        this.fechaProvision = fechaProvision;
+    public void setProvisionDate(Instant provisionDate) {
+        this.provisionDate = provisionDate;
     }
 
-    public List<DetalleProvision> getDetalleProvision() {
-        return detalleProvision;
+    public List<ProvisionItem> getItems() {
+        return items;
     }
 
-    public void setDetalleProvision(List<DetalleProvision> detalleProvision) {
-        this.detalleProvision = detalleProvision;
+    public void setItems(List<ProvisionItem> items) {
+        this.items = items;
     }
 
-    public void addDetalle(DetalleProvision detalleProvision) {
-        this.detalleProvision.add(detalleProvision);
-        detalleProvision.setProvision(this);
+    public void addProvisionItem(ProvisionItem provisionItem) {
+        this.items.add(provisionItem);
+        provisionItem.setProvision(this);
     }
 
     @Override
     public String toString() {
-        return "Provision [detalleProvision=" + detalleProvision + ", fechaProvision=" + fechaProvision + ", id=" + id
-                + "]";
+        return "Provision{" +
+                "id=" + id +
+                ", provisionDate=" + provisionDate +
+                ", items=" + items +
+                '}';
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((fechaProvision == null) ? 0 : fechaProvision.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Provision other = (Provision) obj;
-        if (fechaProvision == null) {
-            if (other.fechaProvision != null)
-                return false;
-        } else if (!fechaProvision.equals(other.fechaProvision))
-            return false;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    } 
 }

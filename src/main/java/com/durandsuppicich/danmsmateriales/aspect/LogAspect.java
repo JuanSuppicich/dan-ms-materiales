@@ -20,7 +20,7 @@ public class LogAspect {
     @Pointcut("execution(* com.durandsuppicich.danmsmateriales.service.*.*(..))")
     private void metodosServicios() {}
 
-    @Pointcut("execution(* com.durandsuppicich.danmsmateriales.dao.*.*(..))")
+    @Pointcut("execution(* com.durandsuppicich.danmsmateriales.repository.*.*(..))")
     private void metodosRepositorios() {}
 
     @Before("metodosServicios() || metodosRepositorios()" )
