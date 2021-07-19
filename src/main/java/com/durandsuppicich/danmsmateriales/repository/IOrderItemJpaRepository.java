@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IOrderItemJpaRepository extends JpaRepository<OrderItem, Integer> {
 
-    // TODO check
     @Query(value = "SELECT * " +
             "FROM ms_orders.order_item oi " +
             "WHERE oi.order_id = :orderId",

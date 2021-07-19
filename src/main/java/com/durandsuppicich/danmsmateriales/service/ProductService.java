@@ -98,8 +98,8 @@ public class ProductService implements IProductService {
         }
     }
 
-    // TODO @JmsListener(destination = "COLA_PEDIDOS")
-    public void handle(ObjectMessage message) { // TODO check
+    @JmsListener(destination = "COLA_PEDIDOS")
+    public void handle(ObjectMessage message) {
 
         try {
             Integer orderId = (Integer) message.getObject();
