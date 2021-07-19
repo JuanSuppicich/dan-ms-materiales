@@ -98,7 +98,7 @@ public class ProductService implements IProductService {
         }
     }
 
-    @JmsListener(destination = "COLA_PEDIDOS")
+    // TODO @JmsListener(destination = "COLA_PEDIDOS")
     public void handle(ObjectMessage message) { // TODO check
 
         try {

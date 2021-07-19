@@ -45,6 +45,7 @@ public class ApiExceptionHandler {
             ServletRequestBindingException.class,
             TypeMismatchException.class
     })
+
     @ResponseBody
     public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
         return new ErrorMessage(exception, request.getRequestURI());

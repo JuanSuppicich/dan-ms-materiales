@@ -1,5 +1,6 @@
 package com.durandsuppicich.danmsmateriales.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import com.durandsuppicich.danmsmateriales.domain.Product;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -53,7 +55,13 @@ public class ProductController {
         Product product = productService.post(productMapper.map(productDto));
         ProductDto body = productMapper.mapToDto(product);
 
-        return ResponseEntity.ok(body);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(body.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(body);
     }
 
     @GetMapping
@@ -102,8 +110,8 @@ public class ProductController {
     @GetMapping(params = {"minimumPrice", "maximumPrice"})
     @ApiOperation(value = "Retrieves a product list based on the given price range")
     public ResponseEntity<List<ProductDto>> getByPriceRange(
-            @RequestParam(name = "minimumPrice") Double minimumPrice,
-            @RequestParam(name = "maximumPrice") Double maximumPrice) {
+            @RequestParam(name = "minimumPrice") @PositiveOrZero Double minimumPrice,
+            @RequestParam(name = "maximumPrice") @PositiveOrZero Double maximumPrice) {
         
         List<Product> products = productService.getByPriceRange(minimumPrice, maximumPrice);
         List<ProductDto> body = productMapper.mapToDto(products);
