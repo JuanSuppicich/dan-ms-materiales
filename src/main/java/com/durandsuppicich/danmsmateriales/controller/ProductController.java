@@ -35,7 +35,7 @@ import javax.validation.constraints.Size;
 
 @RestController
 @Validated
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 @Api(value = "ProductController")
 public class ProductController {
 
