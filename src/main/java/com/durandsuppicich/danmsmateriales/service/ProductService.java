@@ -13,6 +13,8 @@ import com.durandsuppicich.danmsmateriales.repository.IProductJpaRepository;
 import com.durandsuppicich.danmsmateriales.domain.OrderItem;
 import com.durandsuppicich.danmsmateriales.domain.Product;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +25,31 @@ public class ProductService implements IProductService {
     private final IStockMovementService stockMovementService;
     private final IOrderItemJpaRepository orderItemRepository;
     private final IProvisionService provisionService;
+    private final MeterRegistry meterRegistry;
+    private Counter postCounter;
 
     public ProductService(
             IProductJpaRepository productRepository,
             IStockMovementService stockMovementService,
             IOrderItemJpaRepository orderItemRepository,
-            IProvisionService provisionService) {
+            IProvisionService provisionService,
+            MeterRegistry meterRegistry) {
 
         this.productRepository = productRepository;
         this.stockMovementService = stockMovementService;
         this.orderItemRepository = orderItemRepository;
         this.provisionService = provisionService;
+        this.meterRegistry = meterRegistry;
+        initCounter();
+    }
+
+    private void initCounter() {
+        postCounter = meterRegistry.counter("orders.posts");
     }
 
     @Override
     public Product post(Product product) {
+        postCounter.increment();
         return productRepository.save(product);
     }
 

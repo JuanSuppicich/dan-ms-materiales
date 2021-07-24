@@ -10,6 +10,7 @@ import com.durandsuppicich.danmsmateriales.dto.product.ProductPutDto;
 import com.durandsuppicich.danmsmateriales.mapper.IProductMapper;
 import com.durandsuppicich.danmsmateriales.service.IProductService;
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +51,7 @@ public class ProductController {
 
     @PostMapping
     @ApiOperation(value = "Creates a new product")
+    @Timed(description = "time to post a product")
     public ResponseEntity<ProductDto> post(@RequestBody @Valid ProductPostDto productDto) {
 
         Product product = productService.post(productMapper.map(productDto));
@@ -66,6 +68,7 @@ public class ProductController {
 
     @GetMapping
     @ApiOperation(value = "Retrieves all products")
+    @Timed(description = "time to get all products")
     public ResponseEntity<List<ProductDto>> getAll() {
 
         List<Product> products = productService.getAll();
