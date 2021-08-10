@@ -53,7 +53,10 @@ public class ProductMapper implements IProductMapper {
         productDto.setName(product.getName());
         productDto.setDescription(product.getDescription());
         productDto.setCurrentStock(product.getCurrentStock());
+        productDto.setMinimumStock(product.getMinimumStock());
+        productDto.setPrice(product.getPrice());
         productDto.setUnitDescription(product.getUnit().getDescription());
+        productDto.setUnitId(product.getUnit().getId());
 
         return productDto;
     }
