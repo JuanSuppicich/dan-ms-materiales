@@ -12,6 +12,8 @@ public interface IProductService {
 
     Product getById(Integer id);
 
+    List<Product> getAllByIds(List<Integer> ids);
+
     Product getByName(String name);
 
     List<Product> getByStockRange(Integer minimumStock, Integer maximumStock);

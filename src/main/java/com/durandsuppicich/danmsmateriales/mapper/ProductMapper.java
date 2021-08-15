@@ -24,6 +24,8 @@ public class ProductMapper implements IProductMapper {
         product.setCurrentStock(productDto.getCurrentStock());
         product.setMinimumStock(productDto.getMinimumStock());
         product.setUnit(unit);
+        //product.setWeight(productDto.getWeight()); not fully supported yet
+        //product.setVolume(productDto.getVolume()); not fully supported yet
 
         return product;
     }
@@ -41,6 +43,8 @@ public class ProductMapper implements IProductMapper {
         product.setPrice(productDto.getPrice());
         product.setMinimumStock(productDto.getMinimumStock());
         product.setUnit(unit);
+        //product.setWeight(productDto.getWeight()); not fully supported yet
+        //product.setVolume(productDto.getVolume()); not fully supported yet
 
         return product;
     }
@@ -57,6 +61,8 @@ public class ProductMapper implements IProductMapper {
         productDto.setPrice(product.getPrice());
         productDto.setUnitDescription(product.getUnit().getDescription());
         productDto.setUnitId(product.getUnit().getId());
+        productDto.setWeight(product.getWeight());
+        productDto.setVolume(product.getVolume());
 
         return productDto;
     }

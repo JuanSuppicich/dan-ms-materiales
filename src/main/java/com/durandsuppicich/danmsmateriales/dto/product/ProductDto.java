@@ -18,6 +18,10 @@ public class ProductDto {
 
     private Integer unitId;
 
+    private Double weight;
+
+    private Double volume;
+
     public Integer getId() {
         return id;
     }
@@ -80,5 +84,21 @@ public class ProductDto {
 
     public void setUnitId(Integer unitId) {
         this.unitId = unitId;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
     }
 }

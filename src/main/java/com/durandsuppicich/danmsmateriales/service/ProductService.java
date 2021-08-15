@@ -66,6 +66,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public List<Product> getAllByIds(List<Integer> ids) {
+        return productRepository.findAllByIds(ids);
+    }
+
+    @Override
     public Product getByName(String name) {
         return productRepository
                 .findByName(name)

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.text.DecimalFormat;
 
 @Entity
 @Table(name = "product", schema = "ms_products")
@@ -36,6 +37,18 @@ public class Product {
     @OneToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
+
+    @Column(nullable = false)
+    private Double weight;
+
+    @Column(nullable = false)
+    private Double volume;
+
+    public Product() {
+
+        this.weight = Math.random() * 500;
+        this.volume = Math.random() * 2;
+    }
 
     public Integer getId() {
         return id;
@@ -93,6 +106,22 @@ public class Product {
         this.unit = unit;
     }
 
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -103,6 +132,8 @@ public class Product {
                 ", currentStock=" + currentStock +
                 ", minimumStock=" + minimumStock +
                 ", unit=" + unit +
+                ", weight=" + weight +
+                ", volume=" + volume +
                 '}';
     }
 }
