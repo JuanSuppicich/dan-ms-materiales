@@ -18,20 +18,23 @@ public class LogAspect {
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
     @Pointcut("execution(* com.durandsuppicich.danmsmateriales.service.*.*(..))")
-    private void metodosServicios() {}
+    private void serviceMethods() {}
 
     @Pointcut("execution(* com.durandsuppicich.danmsmateriales.repository.*.*(..))")
-    private void metodosRepositorios() {}
+    private void repositoryMethods() {}
 
-    @Before("metodosServicios() || metodosRepositorios()" )
-    public void hacerAntes(JoinPoint joinPoint) {
+    @Pointcut("execution(* com.durandsuppicich.danmsmateriales.exception.*.*(..))")
+    private void exceptions() {}
+
+    @Before("serviceMethods() || repositoryMethods() || exceptions()" )
+    public void doBefore(JoinPoint joinPoint) {
         logger.debug(joinPoint.getTarget().getClass() + 
             ". METODO A EJECUTAR: " + joinPoint.getSignature().getName() + 
             ". ARGUMENTOS: " + Arrays.toString(joinPoint.getArgs()));
     }
 
-    @After("metodosServicios() || metodosRepositorios()")
-    public void hacerDespues(JoinPoint joinPoint) {
+    @After("serviceMethods() || repositoryMethods()")
+    public void doAfter(JoinPoint joinPoint) {
         logger.debug(joinPoint.getTarget().getClass() + 
             ". METODO EJECUTADO: " + joinPoint.getSignature().getName() + 
             " .ARGUMENTOS: " + Arrays.toString(joinPoint.getArgs()));
