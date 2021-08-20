@@ -81,7 +81,7 @@ public class ProductController {
         return ResponseEntity.ok(body);
     }
 
-    @GetMapping(path = "/all-in")
+    @PostMapping(path = "/all-in")
     @ApiOperation(value = "Retrieves all the products included in the ids list")
     public ResponseEntity<List<ProductDto>> getAllByIds(@RequestBody List<@Positive Integer> ids) {
 
